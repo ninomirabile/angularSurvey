@@ -1,0 +1,108 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* SurveyJS CSS imports */
+@import 'survey-core/defaultV2.min.css';
+@import 'survey-creator-core/survey-creator-core.min.css';
+
+/* Custom styles for SurveyJS icons */
+.sv-action-bar-item {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+}
+
+.sv-action-bar-item__icon {
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 20px !important;
+}
+
+.sv-action-bar-item__title {
+  font-size: 12px !important;
+}
+
+/* Reduce size of SurveyJS toolbar icons */
+.sv-action-bar {
+  padding: 8px !important;
+}
+
+.sv-action-bar-item {
+  margin: 2px !important;
+}
+
+/* Fix SurveyJS editor container */
+#surveyCreatorContainer {
+  min-height: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#surveyContainer {
+  min-height: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* SurveyJS theme customization */
+.sv-root-modern {
+  --sjs-font-family: 'Roboto', sans-serif;
+  --sjs-font-size: 14px;
+  --sjs-font-weight: 400;
+}
+
+.sv-root-modern .sv-action-bar-item {
+  border-radius: 4px;
+}
+
+.sv-root-modern .sv-action-bar-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Fix for large icons in SurveyJS */
+.sv-action-bar-item__icon svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.sv-action-bar-item__icon .sv-svg-icon {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Override SurveyJS default icon sizes */
+.sv-action-bar-item__icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Fix for SurveyJS creator icons */
+.svc-creator-tab {
+  padding: 8px 16px !important;
+}
+
+.svc-creator-tab__icon {
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 8px !important;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .sv-action-bar-item {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+  }
+  
+  .sv-action-bar-item__icon {
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 16px !important;
+  }
+} 
