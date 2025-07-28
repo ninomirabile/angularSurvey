@@ -1,131 +1,181 @@
-# Angular Survey Application
+# Angular 20 Survey Builder
 
-Un'applicazione moderna per la creazione e gestione di sondaggi basata su Angular 20 e Survey.js.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Angular](https://img.shields.io/badge/Angular-20-red.svg)](https://angular.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
 
-## 🚀 Caratteristiche
+> **⚠️ Educational Project**: This project is created for educational and study purposes. It is used to experiment and verify new Angular 20 patterns and best practices. While the MIT license allows commercial use, this project is primarily intended for learning and educational purposes.
 
-- **Dashboard interattiva** con statistiche sui sondaggi
-- **Creazione di sondaggi** con Survey Creator
-- **Temi personalizzabili** (chiaro/scuro)
-- **UI moderna** con Angular Material
-- **Responsive design** per tutti i dispositivi
+## 📋 Project Information
 
-## 📋 Prerequisiti
+**Author:** [Antonino Mirabile](https://github.com/ninomirabile)  
+**Repository:** https://github.com/ninomirabile/angularSurvey  
+**License:** MIT License  
+**Purpose:** Study and experimentation project to test and verify new Angular 20 patterns and best practices
 
-- Node.js (versione 18 o superiore)
-- npm (incluso con Node.js)
+## 🚀 Quick Start
 
-## 🛠️ Installazione
-
-1. Clona il repository:
 ```bash
-git clone <repository-url>
+# Clone the repository
+git clone https://github.com/ninomirabile/angularSurvey.git
 cd angularSurvey
-```
 
-2. Installa le dipendenze:
-```bash
-cd survey-app
-npm install
-```
-
-## 🚀 Avvio dell'Applicazione
-
-### Metodo 1: Script automatico (Raccomandato)
-Dalla directory root del progetto:
-```bash
+# Start the application
 ./start.sh
-```
 
-### Metodo 2: Manuale
-```bash
-cd survey-app
-npm start
-```
-
-L'applicazione sarà disponibile all'indirizzo: **http://localhost:4200**
-
-## 🛑 Arresto dell'Applicazione
-
-### Metodo 1: Script automatico
-```bash
+# Stop the application  
 ./stop.sh
 ```
 
-### Metodo 2: Manuale
-Premi `Ctrl+C` nel terminale dove è in esecuzione l'applicazione.
+The application will be available at: http://localhost:4200
 
-## 📁 Struttura del Progetto
+## 🎯 Project Objective
+
+Create a complete Angular 20 application that demonstrates all modern framework features through a survey management system with creation interface (admin) and compilation interface (public). The project serves as a showcase of best practices and new Angular 17+ APIs.
+
+## 🚀 Technology Stack
+
+### Frontend Core
+- **Angular 20**: Standalone application with all new APIs
+- **UI Framework**: Angular Material (MDC) + Tailwind CSS
+- **Architecture**: 100% Standalone components with modern dependency injection
+- **Forms**: Typed Reactive Forms + SurveyJS integration
+- **State Management**: Signals + ComponentStore + RxJS 7+
+- **Routing**: Standalone routing with `inject()` and lazy loading
+
+### Development & Testing
+- **Build Tool**: Angular CLI 17+ (with Vite-ready configuration)
+- **Mocking**: MSW (Mock Service Worker) for realistic API simulation
+- **Testing**: Vitest + @angular/testing + Component Harness + Playwright
+- **i18n**: Built-in Angular i18n with ICU expressions
+- **DevTools**: Angular DevTools + Redux DevTools for ComponentStore
+
+### Specialized Libraries
+- **SurveyJS**: Editor and Runner for advanced survey management
+- **Storage**: LocalStorage + IndexedDB + potential API integration
+- **Charts**: Chart.js for result visualization
+- **Animations**: Angular animations + Framer Motion integration
+
+## 📁 Project Structure
 
 ```
-angularSurvey/
-├── survey-app/                 # Applicazione Angular principale
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── core/          # Servizi e modelli core
-│   │   │   ├── features/      # Moduli funzionali
-│   │   │   │   ├── admin/     # Dashboard e gestione
-│   │   │   │   └── survey/    # Creazione e gestione sondaggi
-│   │   │   └── shared/        # Componenti condivisi
-│   │   └── assets/            # Risorse statiche
-│   ├── package.json
-│   └── angular.json
-├── ai/                        # File di configurazione AI
-├── start.sh                   # Script di avvio
-├── stop.sh                    # Script di arresto
-└── README.md
+src/
+├── app/
+│   ├── core/                           # Core services and utilities
+│   │   ├── services/                   # Application services
+│   │   ├── models/                     # TypeScript interfaces
+│   │   ├── guards/                     # Route protection
+│   │   └── utils/                      # Utility functions
+│   ├── shared/                         # Reusable components
+│   │   ├── ui/                         # Design system components
+│   │   ├── pipes/                      # Custom pipes
+│   │   └── directives/                 # Custom directives
+│   ├── features/
+│   │   ├── survey-builder/             # Survey creation module
+│   │   ├── survey-runner/              # Survey execution module
+│   │   ├── analytics/                  # Results analysis module
+│   │   └── admin/                      # Administration module
+│   └── layout/                         # Layout components
+├── assets/                             # Static assets
+├── environments/                       # Environment configurations
+└── styles/                             # Global styles
 ```
 
-## 🎨 Temi
+## 🎨 Features
 
-L'applicazione supporta due temi:
-- **Tema chiaro** (default)
-- **Tema scuro**
+### 1. Survey Builder Module (Admin Panel)
+- **Survey Editor**: Complete SurveyJS Creator integration
+- **Survey List**: Virtual scrolling with search/filter
+- **Real-time Preview**: Live preview with hot reload
+- **Settings Panel**: Advanced survey properties configurator
+- **Template Manager**: Predefined template management
 
-Puoi cambiare tema usando il pulsante "Toggle Theme" nella dashboard.
+### 2. Survey Runner Module (Public Interface)
+- **Survey Display**: Responsive compilation interface
+- **Progress Indicator**: Multi-step progress with animations
+- **Results Page**: Thank you page with analytics
+- **Embedded Mode**: Widget for external integration
 
-## 🔧 Sviluppo
+### 3. Analytics Module
+- **Charts Dashboard**: Result visualization with Chart.js
+- **Reports Generator**: Customizable reports
+- **Data Export**: Export in various formats
+- **Real-time Analytics**: Live data updates
 
-### Comandi utili
+## ⚡ Modern Angular 17+ Features
+
+- **Signals**: Reactive state management
+- **Control Flow**: `@if`, `@for`, `@switch` syntax
+- **Standalone Components**: Modern dependency injection
+- **Typed Forms**: Strongly typed reactive forms
+- **Performance**: OnPush strategy, trackBy functions
+- **Testing**: Vitest + Component Harness + Playwright
+
+## 🧪 Testing
 
 ```bash
-# Avvia il server di sviluppo
-./start.sh
+# Unit tests
+npm test
 
-# Esegui i test
-cd survey-app && npm test
+# E2E tests
+npm run e2e
 
-# Build per la produzione
-cd survey-app && npm run build
-
-# Analisi del codice
-cd survey-app && npm run lint
+# Test coverage
+npm run test:coverage
 ```
 
-### Tecnologie utilizzate
+## 🔧 Development
 
-- **Angular 20** - Framework principale
-- **Angular Material** - Componenti UI
-- **Survey.js** - Libreria per sondaggi
-- **RxJS** - Gestione reattiva
-- **TypeScript** - Linguaggio di programmazione
+```bash
+# Install dependencies
+npm install
 
-## 📝 TODO
+# Start development server
+npm start
 
-- [ ] Implementare autenticazione utenti
-- [ ] Aggiungere backend API
-- [ ] Implementare salvataggio sondaggi
-- [ ] Aggiungere analisi risultati
-- [ ] Implementare condivisione sondaggi
+# Build for production
+npm run build
 
-## 🤝 Contribuire
+# Lint code
+npm run lint
+```
 
-1. Fai un fork del progetto
-2. Crea un branch per la tua feature (`git checkout -b feature/AmazingFeature`)
-3. Committa le tue modifiche (`git commit -m 'Add some AmazingFeature'`)
-4. Pusha al branch (`git push origin feature/AmazingFeature`)
-5. Apri una Pull Request
+## 📚 Documentation
 
-## 📄 Licenza
+For detailed documentation, see the [AI folder](./ai/) which contains:
+- [Project Blueprint](./ai/cursor.prompt.md) - Complete project specification
+- Technical implementation details
+- Best practices and patterns
 
-Questo progetto è sotto licenza MIT. Vedi il file `LICENSE` per maggiori dettagli.
+## 🤝 Contributing
+
+This is an educational project for studying Angular 20 patterns. Contributions are welcome for educational purposes only.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+**Note**: While the MIT license allows commercial use, this project is primarily intended for educational and learning purposes.
+
+## 🙏 Acknowledgments
+
+- [Angular Team](https://angular.io/) for the amazing framework
+- [SurveyJS](https://surveyjs.io/) for the survey components
+- [Angular Material](https://material.angular.io/) for the UI components
+- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
+
+## 📞 Contact
+
+Antonino Mirabile - [@ninomirabile](https://github.com/ninomirabile)
+
+Project Link: [https://github.com/ninomirabile/angularSurvey](https://github.com/ninomirabile/angularSurvey)
+
+---
+
+⭐ If this project helped you learn Angular 20, please give it a star!
