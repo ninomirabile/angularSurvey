@@ -105,7 +105,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Comprehensive type safety
 
 ### Documentation
-- Complete project blueprint in `ai/cursor.prompt.md`
 - README with setup instructions
 - Contributing guidelines
 - Code of conduct

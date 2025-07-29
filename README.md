@@ -176,13 +176,6 @@ npm run lint
 - 🔄 Chart.js integration for analytics
 - 🔄 Advanced animations with Framer Motion
 
-## 📚 Documentation
-
-For detailed documentation, see the [AI folder](../ai/) which contains:
-- [Project Blueprint](../ai/cursor.prompt.md) - Complete project specification
-- Technical implementation details
-- Best practices and patterns
-
 ## 🤝 Contributing
 
 This is an educational project for studying Angular 20 patterns. Contributions are welcome for educational purposes only.
