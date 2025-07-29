@@ -92,14 +92,14 @@ export class PrimaryButtonComponent {
 
   buttonClasses(): string {
     const sizeClasses: { [key in ButtonSize]: string } = {
-      sm: 'px-3 py-1.5 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-6 py-3 text-lg'
+      sm: 'btn-sm',
+      md: 'btn-md',
+      lg: 'btn-lg'
     };
 
     const variantClasses: { [key in ButtonVariant]: string } = {
-      primary: 'bg-blue-600 text-white hover:bg-blue-700',
-      secondary: 'bg-gray-600 text-white hover:bg-gray-700',
+      primary: 'bg-primary-500 text-white hover:bg-primary-600',
+      secondary: 'bg-secondary-500 text-white hover:bg-secondary-600',
       outline: 'border border-gray-300 text-gray-700 hover:bg-gray-50',
       ghost: 'text-gray-700 hover:bg-gray-100'
     };
