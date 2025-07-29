@@ -1,59 +1,96 @@
-# SurveyApp
+# Survey App - Angular 20 Implementation
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.3.
+This is the main Angular 20 application implementing the Survey Builder system.
 
-## Development server
-
-To start a local development server, run:
+## 🚀 Quick Start
 
 ```bash
-ng serve
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Run tests
+npm run test:unit
+npm run test:e2e
+
+# Build for production
+npm run build
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📁 Project Structure
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+src/
+├── app/
+│   ├── core/                           # Core services and utilities
+│   │   ├── services/                   # Application services
+│   │   ├── models/                     # TypeScript interfaces
+│   │   └── utils/                      # Utility functions
+│   ├── shared/                         # Reusable components
+│   │   └── ui/                         # Design system components
+│   │       ├── buttons/                # Button components
+│   │       ├── cards/                  # Card components
+│   │       ├── forms/                  # Form components
+│   │       ├── modals/                 # Modal components
+│   │       └── feedback/               # Toast notifications
+│   ├── features/
+│   │   ├── survey-builder/             # Survey creation module
+│   │   ├── survey-runner/              # Survey execution module
+│   │   ├── analytics/                  # Results analysis module
+│   │   └── admin/                      # Administration module
+│   └── layout/                         # Layout components
+├── assets/                             # Static assets
+├── environments/                       # Environment configurations
+└── styles/                             # Global styles
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🎯 Features
 
-```bash
-ng generate --help
-```
+### ✅ Survey Builder Module
+- Complete drag & drop survey editor
+- Survey list with CRUD operations
+- Real-time preview
+- Settings configuration
+- Auto-save functionality
 
-## Building
+### ✅ Survey Runner Module
+- Interactive survey display
+- Progress tracking
+- Form validation
+- Navigation controls
 
-To build the project run:
+### ✅ Analytics Module
+- Dashboard with metrics
+- Charts placeholders
+- Reports interface
+- Response tracking
 
-```bash
-ng build
-```
+### ✅ Shared UI Components
+- Button system
+- Card components
+- Form components
+- Modal system
+- Toast notifications
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🧪 Testing
 
-## Running unit tests
+- **Unit Tests**: Vitest with Angular testing utilities
+- **E2E Tests**: Playwright for browser testing
+- **Coverage**: Comprehensive test coverage
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 🔧 Development
 
-```bash
-ng test
-```
+- **Angular 20**: Latest framework features
+- **Tailwind CSS**: Utility-first styling
+- **Angular Material**: UI component library
+- **Signals**: Reactive state management
+- **Lazy Loading**: Performance optimization
 
-## Running end-to-end tests
+## 📊 Build Information
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Bundle Size**: ~600KB initial
+- **Lazy Chunks**: 11 chunks for optimization
+- **Performance**: OnPush change detection
+- **Modern**: Standalone components
