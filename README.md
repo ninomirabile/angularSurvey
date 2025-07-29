@@ -1,17 +1,17 @@
 # Angular 20 Survey Builder
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Angular](https://img.shields.io/badge/Angular-20-red.svg)](https://angular.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/Tests-Passing-green.svg)](https://github.com/ninomirabile/angularSurvey)
 
-> **⚠️ Educational Project**: This project is created for educational and study purposes. It is used to experiment and verify new Angular 20 patterns and best practices. While the MIT license allows commercial use, this project is primarily intended for learning and educational purposes.
+> **⚠️ Educational Project**: This project is created for educational and study purposes. It is used to experiment and verify new Angular 20 patterns and best practices. This project is licensed for non-commercial use only.
 
 ## 📋 Project Information
 
 **Author:** [Antonino Mirabile](https://github.com/ninomirabile)  
 **Repository:** https://github.com/ninomirabile/angularSurvey  
-**License:** MIT License  
+**License:** Creative Commons Attribution-NonCommercial 4.0 International  
 **Purpose:** Study and experimentation project to test and verify new Angular 20 patterns and best practices
 
 ## 🚀 Quick Start
@@ -195,9 +195,9 @@ This is an educational project for studying Angular 20 patterns. Contributions a
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License - see the [LICENSE](LICENSE) file for details.
 
-**Note**: While the MIT license allows commercial use, this project is primarily intended for educational and learning purposes.
+**Note**: This license allows sharing and adaptation for non-commercial purposes only. Commercial use is not permitted.
 
 ## 🙏 Acknowledgments
 

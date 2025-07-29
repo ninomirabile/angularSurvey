@@ -2,6 +2,8 @@
 
 This is the main Angular 20 application implementing the Survey Builder system.
 
+**License:** Creative Commons Attribution-NonCommercial 4.0 International
+
 ## 🚀 Quick Start
 
 ```bash
@@ -94,3 +96,7 @@ src/
 - **Lazy Chunks**: 11 chunks for optimization
 - **Performance**: OnPush change detection
 - **Modern**: Standalone components
+
+## 📄 License
+
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. Commercial use is not permitted.
