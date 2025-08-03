@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2024-12-19
+
+### Changed
+- **Status Update** - Added "Work in Progress" alert to README
+- **Documentation** - Updated project status to reflect ongoing development
+- **User Communication** - Added known issues section for transparency
+
+### Known Issues
+- Some interactive features may have minor bugs
+- E2E tests are currently outdated
+- Performance optimizations are ongoing
+
+### Status
+- **Project Type:** Educational Demo - Learning Resource
+- **Development Status:** Active Development
+- **Primary Purpose:** Angular 20 Concepts Demonstration
+
 ## [1.0.1] - 2024-12-19
 
 ### Changed

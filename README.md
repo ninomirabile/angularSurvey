@@ -10,6 +10,17 @@
 
 **🚀 [View Live Application](https://ninomirabile.github.io/angularSurvey/)**
 
+> ⚠️ **Work in Progress** ⚠️
+> 
+> This project is currently under active development. Some features may not work as expected or may be incomplete. This is an educational demonstration project showcasing Angular 20 concepts and modern development practices.
+> 
+> **Known Issues:**
+> - Some interactive features may have minor bugs
+> - E2E tests are currently outdated
+> - Performance optimizations are ongoing
+> 
+> **Status:** Educational Demo - Learning Resource
+
 ## 📖 Overview
 
 A comprehensive educational project demonstrating modern **Angular 20** features including Signals, Control Flow, Standalone Components, Lazy Loading, Reactive Forms, and much more. The application includes a complete survey creation and management system with interactive educational demos.
@@ -368,15 +379,16 @@ For commercial use, please contact the author for licensing options.
 
 ---
 
-## 🎉 **Project Status: COMPLETE & TESTED**
+## 🎉 **Project Status: WORK IN PROGRESS**
 
 This educational project demonstrates **modern Angular 20 development** with:
-- ✅ **100% Feature Complete**
-- ✅ **Production Ready**
-- ✅ **Fully Documented**
-- ✅ **Performance Optimized**
-- ✅ **Educational Focus**
-- ✅ **Working Test Suite**
-- ✅ **All Demos Functional**
+- ✅ **Core Features Complete** - Main functionality implemented
+- ✅ **Educational Focus** - Comprehensive learning resources
+- ✅ **Modern Architecture** - Angular 20 best practices
+- ✅ **Documentation** - Complete guides and examples
+- ⚠️ **Active Development** - Some features may have minor issues
+- ⚠️ **E2E Tests** - Currently being updated
+- ⚠️ **Performance** - Ongoing optimizations
 
-**Ready for learning and deployment! 🚀**
+**Status:** Educational Demo - Learning Resource 🎓
+**Development:** Active - Work in Progress 🔧
