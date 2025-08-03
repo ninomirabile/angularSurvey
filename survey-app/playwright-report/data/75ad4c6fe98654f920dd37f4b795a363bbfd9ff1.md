@@ -1,0 +1,71 @@
+# Page snapshot
+
+```yaml
+- text: Angular 20 Survey Builder Educational
+- navigation:
+  - link "Survey Builder":
+    - /url: /survey-builder
+  - link "Survey Runner":
+    - /url: /survey-runner
+  - link "Analytics":
+    - /url: /analytics
+  - link "Admin":
+    - /url: /admin
+- switch
+- button
+- button
+- main:
+  - heading "🎓 Angular 20 Survey Builder Educational Project" [level=1]
+  - paragraph: Un progetto educativo completo che dimostra le funzionalità moderne di Angular 20, inclusi Signals, Control Flow, Standalone Components e molto altro.
+  - button "Inizia a Esplorare"
+  - button "Impara Angular 20"
+  - heading "🚀 Funzionalità Angular 20" [level=2]
+  - text: Signals State Management Moderno
+  - paragraph: Gestione dello stato reattiva con Signals, computed values e effects.
+  - text: "Contatore: 0"
+  - button
+  - text: "Pari: Sì Quadrato: 0"
+  - button "Approfondisci Signals"
+  - text: Control Flow Nuova Sintassi
+  - paragraph: "@if, @for, @switch per rendering condizionale e liste."
+  - text: Messaggio visibile!
+  - button "Nascondi"
+  - text: Standalone Components 100% Standalone
+  - paragraph: Componenti auto-contenuti senza NgModule, con dependency injection moderna.
+  - text: Componente Standalone Dependency Injection Tree-shakable Lazy Loading Route-based
+  - paragraph: Caricamento on-demand dei moduli per performance ottimali.
+  - progressbar
+  - text: 0% caricato
+  - button "Simula Caricamento"
+  - text: Reactive Forms Form Handling Moderno
+  - paragraph: Gestione avanzata dei form con validazione reattiva e controllo completo.
+  - text: "Nome: Non compilato Email: Non compilato Invalido"
+  - button "Simula Dati Form"
+  - text: Subjects vs Signals State Management
+  - paragraph: Confronta diversi approcci alla gestione dello stato reattivo.
+  - text: "Signals: 0 Subject: 0"
+  - button "Incrementa Entrambi"
+  - heading "🎮 Demo Interattivo" [level=2]
+  - button "Signals Demo"
+  - button "Control Flow Demo"
+  - button "Standalone Demo"
+  - button "Lazy Loading Demo"
+  - button "Reactive Forms Demo"
+  - button "Subjects vs Signals Demo"
+  - heading "Informazioni Demo" [level=3]
+  - paragraph: I Signals sono il nuovo sistema di gestione dello stato in Angular 20. Sono reattivi, performanti e facili da usare. Prova a cliccare il pulsante per vedere il contatore aggiornarsi in tempo reale!
+  - heading "🧭 Esplora il Progetto" [level=2]
+  - text: Survey Builder
+  - paragraph: Crea e gestisci sondaggi con l'editor avanzato
+  - text: Analytics
+  - paragraph: Visualizza i risultati con Chart.js e animazioni
+  - text: Learning Center
+  - paragraph: Demo interattivi per imparare Angular 20
+  - text: Reactive Forms
+  - paragraph: Confronta Reactive Forms vs Template-Driven Forms
+  - text: Subjects vs Signals
+  - paragraph: Confronta diversi approcci alla gestione dello stato
+  - text: Lazy Loading
+  - paragraph: Scopri il code splitting e il caricamento on-demand
+- button "Dev Tools"
+```

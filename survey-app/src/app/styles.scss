@@ -1,0 +1,155 @@
+@use '@angular/material' as mat;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+// Include the common styles for Angular Material
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+$primary-palette: mat.define-palette(mat.$indigo-palette);
+$accent-palette: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+// Create the theme object
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+// Apply the theme
+@include mat.all-component-themes($theme);
+
+// CSS Custom Properties for theming
+:root {
+  // Light theme defaults
+  --primary-color: #1976d2;
+  --secondary-color: #dc004e;
+  --accent-color: #ff9800;
+  --border-radius: 8px;
+  --font-family: 'Roboto, sans-serif';
+  --theme-mode: light;
+  
+  // Light theme colors
+  --background-color: #ffffff;
+  --surface-color: #fafafa;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --card-background: #ffffff;
+  --toolbar-background: #ffffff;
+  --divider-color: #e0e0e0;
+}
+
+// Dark theme
+.dark-theme {
+  --background-color: #121212;
+  --surface-color: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --border-color: #424242;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --card-background: #1e1e1e;
+  --toolbar-background: #1e1e1e;
+  --divider-color: #424242;
+}
+
+// Light theme
+.light-theme {
+  --background-color: #ffffff;
+  --surface-color: #fafafa;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --card-background: #ffffff;
+  --toolbar-background: #ffffff;
+  --divider-color: #e0e0e0;
+}
+
+// Global styles
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Material theme overrides for dark mode
+.dark-theme {
+  .mat-mdc-card {
+    background-color: var(--card-background);
+    color: var(--text-primary);
+  }
+  
+  .mat-mdc-toolbar {
+    background-color: var(--toolbar-background);
+    color: var(--text-primary);
+  }
+  
+  .mat-mdc-button {
+    color: var(--text-primary);
+  }
+  
+  .mat-mdc-chip {
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+  }
+  
+  .mat-mdc-slide-toggle {
+    .mdc-switch {
+      background-color: var(--surface-color);
+    }
+  }
+  
+  .mat-mdc-menu-panel {
+    background-color: var(--card-background);
+    color: var(--text-primary);
+  }
+  
+  .mat-mdc-menu-item {
+    color: var(--text-primary);
+    
+    &:hover {
+      background-color: var(--surface-color);
+    }
+  }
+}
+
+// Utility classes for theme-aware styling
+.theme-background {
+  background-color: var(--background-color);
+}
+
+.theme-surface {
+  background-color: var(--surface-color);
+}
+
+.theme-text-primary {
+  color: var(--text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}
+
+.theme-border {
+  border-color: var(--border-color);
+}
+
+.theme-shadow {
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+// Smooth transitions for theme changes
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+} 

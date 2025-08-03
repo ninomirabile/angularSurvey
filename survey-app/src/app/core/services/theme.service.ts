@@ -68,12 +68,15 @@ export class ThemeService {
   });
 
   constructor() {
+    console.log('ThemeService: Constructor called');
     this.loadThemeFromStorage();
     this.setupThemeEffects();
+    console.log('ThemeService: Initialization complete, current theme:', this.currentTheme());
   }
 
   // Theme mode management
   setThemeMode(mode: ThemeMode): void {
+    console.log('ThemeService: Setting theme mode to', mode);
     this._themeMode.set(mode);
     this.applyTheme();
   }
@@ -81,6 +84,7 @@ export class ThemeService {
   toggleTheme(): void {
     const currentMode = this._themeMode();
     const newMode = currentMode === 'light' ? 'dark' : 'light';
+    console.log('ThemeService: Toggling theme from', currentMode, 'to', newMode);
     this.setThemeMode(newMode);
   }
 
@@ -186,6 +190,7 @@ export class ThemeService {
   private loadThemeFromStorage(): void {
     const savedConfig = this.storage.getItem<ThemeConfig>(this.THEME_STORAGE_KEY);
     if (savedConfig) {
+      console.log('ThemeService: Loading saved theme config:', savedConfig);
       this._themeMode.set(savedConfig.mode);
       this._primaryColor.set(savedConfig.primaryColor);
       this._secondaryColor.set(savedConfig.secondaryColor);
@@ -193,19 +198,35 @@ export class ThemeService {
       this._borderRadius.set(savedConfig.borderRadius);
       this._fontFamily.set(savedConfig.fontFamily);
     } else {
+      console.log('ThemeService: No saved config, applying default theme');
       // Default theme
       this.applyPresetTheme('default');
     }
+    
+    // Apply theme immediately after loading
+    this.applyTheme();
   }
 
   private applyTheme(): void {
     // This method is called when theme properties change
     // The actual application is handled by the effect
+    
+    // Save theme to storage
+    const config = this.themeConfig();
+    console.log('ThemeService: Saving theme config to storage:', config);
+    this.storage.setItem(this.THEME_STORAGE_KEY, config);
   }
 
   private applyThemeToDOM(): void {
     const variables = this.cssVariables();
     const root = document.documentElement;
+    const currentTheme = this.currentTheme();
+    
+    console.log('ThemeService: Applying theme to DOM', {
+      mode: this._themeMode(),
+      currentTheme,
+      variables
+    });
     
     // Apply CSS custom properties
     Object.entries(variables).forEach(([property, value]) => {
@@ -214,7 +235,9 @@ export class ThemeService {
 
     // Apply theme mode classes
     root.classList.remove('light-theme', 'dark-theme');
-    root.classList.add(`${this.currentTheme()}-theme`);
+    root.classList.add(`${currentTheme}-theme`);
+    
+    console.log('ThemeService: Applied classes to root element:', root.classList.toString());
 
     // Update color scheme meta tag
     this.updateColorSchemeMeta();
@@ -244,11 +267,26 @@ export class ThemeService {
 
   // Utility methods
   isDarkMode(): boolean {
-    return this.currentTheme() === 'dark';
+    const isDark = this.currentTheme() === 'dark';
+    console.log('ThemeService: isDarkMode() called, returning:', isDark);
+    return isDark;
   }
 
   isLightMode(): boolean {
     return this.currentTheme() === 'light';
+  }
+
+  // Force refresh theme
+  forceRefreshTheme(): void {
+    console.log('ThemeService: Force refreshing theme');
+    this.applyThemeToDOM();
+    
+    // Force a repaint
+    setTimeout(() => {
+      document.body.style.display = 'none';
+      document.body.offsetHeight; // Trigger reflow
+      document.body.style.display = '';
+    }, 10);
   }
 
   getContrastColor(backgroundColor: string): string {

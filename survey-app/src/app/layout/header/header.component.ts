@@ -1,292 +1,212 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatBadgeModule } from '@angular/material/badge';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+import { ThemeService } from '../../core/services/theme.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
-    RouterLinkActive,
+    RouterModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    MatBadgeModule
+    MatChipsModule,
+    MatSlideToggleModule
   ],
   template: `
     <mat-toolbar class="header-toolbar">
-      <div class="header-content">
-        <!-- Logo and Brand -->
-        <div class="brand-section">
-          <a routerLink="/" class="brand-link">
-            <mat-icon class="brand-icon">quiz</mat-icon>
-            <span class="brand-text">Survey Builder</span>
-          </a>
+      <div class="toolbar-content">
+        <!-- Logo and Title -->
+        <div class="logo-section" routerLink="/welcome" style="cursor: pointer;">
+          <mat-icon class="logo-icon">quiz</mat-icon>
+          <span class="app-title">Angular 20 Survey Builder</span>
+          <mat-chip color="primary" size="small">Educational</mat-chip>
         </div>
 
-        <!-- Navigation Links -->
-        <nav class="nav-links">
-          <a 
-            mat-button 
-            routerLink="/admin" 
-            routerLinkActive="active-link"
-            class="nav-link">
-            <mat-icon>dashboard</mat-icon>
-            Dashboard
-          </a>
-          
-          <a 
-            mat-button 
-            routerLink="/survey-builder" 
-            routerLinkActive="active-link"
-            class="nav-link">
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+          <a mat-button routerLink="/survey-builder" routerLinkActive="active">
             <mat-icon>edit</mat-icon>
-            Builder
+            Survey Builder
           </a>
-          
-          <a 
-            mat-button 
-            routerLink="/survey-editor" 
-            routerLinkActive="active-link"
-            class="nav-link">
-            <mat-icon>preview</mat-icon>
-            Editor
+          <a mat-button routerLink="/survey-runner" routerLinkActive="active">
+            <mat-icon>play_arrow</mat-icon>
+            Survey Runner
+          </a>
+          <a mat-button routerLink="/analytics" routerLinkActive="active">
+            <mat-icon>analytics</mat-icon>
+            Analytics
+          </a>
+          <a mat-button routerLink="/admin" routerLinkActive="active">
+            <mat-icon>admin_panel_settings</mat-icon>
+            Admin
           </a>
         </nav>
 
         <!-- Right Side Actions -->
-        <div class="header-actions">
-          <!-- Notifications -->
-          <button 
-            mat-icon-button 
-            [matMenuTriggerFor]="notificationsMenu"
-            class="notifications-btn">
-            <mat-icon [matBadge]="notificationCount()" matBadgeColor="warn">
-              notifications
-            </mat-icon>
-          </button>
+        <div class="actions-section">
+          <!-- Theme Toggle -->
+          <mat-slide-toggle 
+            [checked]="isDarkTheme()" 
+            (change)="toggleTheme()"
+            color="primary"
+          >
+            <mat-icon>{{ isDarkTheme() ? 'dark_mode' : 'light_mode' }}</mat-icon>
+          </mat-slide-toggle>
 
-          <!-- User Menu -->
-          <button 
-            mat-icon-button 
-            [matMenuTriggerFor]="userMenu"
-            class="user-menu-btn">
-            <mat-icon>account_circle</mat-icon>
+          <!-- Angular Features Demo -->
+          <button mat-icon-button [matMenuTriggerFor]="featuresMenu">
+            <mat-icon>code</mat-icon>
+          </button>
+          <mat-menu #featuresMenu="matMenu">
+            <button mat-menu-item (click)="showSignalsDemo()">
+              <mat-icon>memory</mat-icon>
+              <span>Signals Demo</span>
+            </button>
+            <button mat-menu-item (click)="showLazyLoadingDemo()">
+              <mat-icon>download</mat-icon>
+              <span>Lazy Loading</span>
+            </button>
+            <button mat-menu-item (click)="showControlFlowDemo()">
+              <mat-icon>code</mat-icon>
+              <span>Control Flow</span>
+            </button>
+            <button mat-menu-item (click)="showStandaloneDemo()">
+              <mat-icon>extension</mat-icon>
+              <span>Standalone Components</span>
+            </button>
+          </mat-menu>
+
+          <!-- Performance Info -->
+          <button mat-icon-button (click)="showPerformanceInfo()">
+            <mat-icon>speed</mat-icon>
           </button>
         </div>
       </div>
     </mat-toolbar>
-
-    <!-- Simple Notifications Menu -->
-    <mat-menu #notificationsMenu="matMenu">
-      <div class="menu-header">
-        <h3>Notifications</h3>
-      </div>
-      <div class="menu-content">
-        <div class="notification-item" *ngFor="let notification of notifications()">
-          <mat-icon>{{ notification.icon }}</mat-icon>
-          <div class="notification-text">
-            <div class="notification-title">{{ notification.title }}</div>
-            <div class="notification-time">{{ notification.time }}</div>
-          </div>
-        </div>
-      </div>
-    </mat-menu>
-
-    <!-- Simple User Menu -->
-    <mat-menu #userMenu="matMenu">
-      <button mat-menu-item routerLink="/admin/profile">
-        <mat-icon>person</mat-icon>
-        <span>Profile</span>
-      </button>
-      <button mat-menu-item routerLink="/admin/settings">
-        <mat-icon>settings</mat-icon>
-        <span>Settings</span>
-      </button>
-      <button mat-menu-item (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Logout</span>
-      </button>
-    </mat-menu>
   `,
   styles: [`
     .header-toolbar {
+      background-color: var(--toolbar-background);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 2px 4px var(--shadow-color);
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      background: var(--mat-sys-surface);
-      border-bottom: 1px solid var(--mat-sys-outline);
-      height: 64px;
     }
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 16px;
-      height: 100%;
+    .toolbar-content {
+      @apply flex items-center justify-between w-full max-w-7xl mx-auto px-4;
     }
 
-    .brand-section {
-      display: flex;
-      align-items: center;
+    .logo-section {
+      @apply flex items-center gap-3;
+      transition: opacity 0.2s ease;
     }
 
-    .brand-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: inherit;
-      font-weight: 600;
-      font-size: 1.2rem;
+    .logo-section:hover {
+      opacity: 0.8;
     }
 
-    .brand-icon {
-      color: #1976d2;
+    .logo-icon {
+      @apply text-blue-600 text-2xl;
     }
 
-    .brand-text {
-      @media (max-width: 768px) {
-        display: none;
-      }
+    .app-title {
+      @apply text-lg font-semibold;
+      color: var(--text-primary);
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .nav-menu {
+      @apply flex items-center gap-2;
     }
 
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      color: var(--mat-sys-on-surface);
-      text-decoration: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: all 0.2s ease;
+    .nav-menu a {
+      @apply flex items-center gap-2 px-3 py-2 rounded-lg transition-colors;
+      color: var(--text-primary);
     }
 
-    .nav-link:hover {
-      background: var(--mat-sys-surface-container);
+    .nav-menu a:hover {
+      background-color: var(--surface-color);
     }
 
-    .nav-link.active-link {
-      background: #1976d2;
+    .nav-menu a.active {
+      background-color: var(--primary-color);
       color: white;
     }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .learn-button {
+      @apply bg-gradient-to-r from-blue-500 to-purple-600 text-white;
     }
 
-    .notifications-btn,
-    .user-menu-btn {
-      color: var(--mat-sys-on-surface);
+    .learn-button:hover {
+      @apply from-blue-600 to-purple-700;
     }
 
-    .notifications-btn:hover,
-    .user-menu-btn:hover {
-      background: var(--mat-sys-surface-container);
+    .actions-section {
+      @apply flex items-center gap-3;
     }
 
-    .menu-header {
-      padding: 16px;
-      border-bottom: 1px solid var(--mat-sys-outline);
-    }
-
-    .menu-header h3 {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .menu-content {
-      max-height: 300px;
-      overflow-y: auto;
-    }
-
-    .notification-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--mat-sys-outline);
-    }
-
-    .notification-item:last-child {
-      border-bottom: none;
-    }
-
-    .notification-text {
-      flex: 1;
-    }
-
-    .notification-title {
-      font-weight: 500;
-      font-size: 0.9rem;
-      margin-bottom: 2px;
-    }
-
-    .notification-time {
-      font-size: 0.8rem;
-      color: var(--mat-sys-on-surface-variant);
-    }
-
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .nav-links {
-        display: none;
+      .nav-menu {
+        @apply hidden;
       }
       
-      .header-content {
-        padding: 0 8px;
+      .app-title {
+        @apply text-base;
       }
     }
   `]
 })
 export class HeaderComponent {
+  private readonly themeService = inject(ThemeService);
   private readonly router = inject(Router);
 
-  // Signals
-  readonly notificationCount = signal(3);
+  readonly isDarkTheme = computed(() => this.themeService.isDarkMode());
 
-  // Mock notifications data
-  readonly notifications = signal([
-    {
-      icon: 'notifications',
-      title: 'New Survey Response',
-      time: '2 minutes ago'
-    },
-    {
-      icon: 'warning',
-      title: 'Survey Expiring Soon',
-      time: '1 hour ago'
-    },
-    {
-      icon: 'info',
-      title: 'System Update',
-      time: '2 hours ago'
-    }
-  ]);
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
+  }
 
-  logout(): void {
-    console.log('Logout');
-    this.router.navigate(['/admin']);
+  showSignalsDemo(): void {
+    this.router.navigate(['/learn/signals']);
+  }
+
+  showLazyLoadingDemo(): void {
+    this.router.navigate(['/learn/lazy-loading']);
+  }
+
+  showControlFlowDemo(): void {
+    this.router.navigate(['/learn/control-flow']);
+  }
+
+  showStandaloneDemo(): void {
+    this.router.navigate(['/learn/standalone']);
+  }
+
+  showPerformanceInfo(): void {
+    const performanceInfo = {
+      initialBundle: '126KB',
+      lazyChunks: '4 chunks',
+      changeDetection: 'OnPush',
+      signals: 'Active',
+      animations: 'Enabled'
+    };
+    
+    console.log('Performance Information:', performanceInfo);
+    alert(`Performance Information:\n\n• Initial Bundle: ${performanceInfo.initialBundle}\n• Lazy Chunks: ${performanceInfo.lazyChunks}\n• Change Detection: ${performanceInfo.changeDetection}\n• Signals: ${performanceInfo.signals}\n• Animations: ${performanceInfo.animations}\n\nCheck the Dev Tools for real-time metrics!`);
   }
 } 

@@ -1,5 +1,6 @@
-import { Component, inject, signal, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -168,6 +169,7 @@ import { SurveyBuilderStore } from './store/survey-builder.store';
               (surveySelect)="store.selectSurvey($event)"
               (surveyDelete)="deleteSurvey($event)"
               (surveyDuplicate)="duplicateSurvey($event)"
+              (surveyRun)="runSurvey($event)"
             ></app-survey-list>
           </div>
         }
@@ -255,6 +257,7 @@ import { SurveyBuilderStore } from './store/survey-builder.store';
 })
 export class SurveyBuilderComponent {
   readonly store = inject(SurveyBuilderStore);
+  private router = inject(Router);
 
   onTabChange(event: any): void {
     this.store.setSelectedTab(event.index);
@@ -310,5 +313,9 @@ export class SurveyBuilderComponent {
         updates: { settings: { ...currentSurvey.settings, ...settings } }
       });
     }
+  }
+
+  runSurvey(survey: Survey): void {
+    this.router.navigate(['/survey-runner', survey.id]);
   }
 } 

@@ -96,6 +96,12 @@ import { Survey } from '../../../../core/models/survey.model';
                 <mat-icon>edit</mat-icon>
                 <span>Edit</span>
               </button>
+              @if (survey.isPublished) {
+                <button mat-menu-item (click)="runSurvey(survey)">
+                  <mat-icon>play_arrow</mat-icon>
+                  <span>Run Survey</span>
+                </button>
+              }
               <button mat-menu-item (click)="duplicateSurvey(survey.id)">
                 <mat-icon>content_copy</mat-icon>
                 <span>Duplicate</span>
@@ -181,6 +187,7 @@ export class SurveyListComponent {
   @Output() surveySelect = new EventEmitter<Survey>();
   @Output() surveyDelete = new EventEmitter<string>();
   @Output() surveyDuplicate = new EventEmitter<string>();
+  @Output() surveyRun = new EventEmitter<Survey>();
 
   selectSurvey(survey: Survey): void {
     this.surveySelect.emit(survey);
@@ -192,5 +199,9 @@ export class SurveyListComponent {
 
   duplicateSurvey(surveyId: string): void {
     this.surveyDuplicate.emit(surveyId);
+  }
+
+  runSurvey(survey: Survey): void {
+    this.surveyRun.emit(survey);
   }
 } 

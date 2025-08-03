@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnInit, signal, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, signal, computed, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,8 +12,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSpinner } from '@angular/material/progress-spinner';
 
 import { Survey, Question, QuestionType, QuestionOption } from '../../../../core/models/survey.model';
+import { SurveyService } from '../../../../core/services/survey.service';
 
 @Component({
   selector: 'app-survey-display',
@@ -29,13 +32,44 @@ import { Survey, Question, QuestionType, QuestionOption } from '../../../../core
     MatCheckboxModule,
     MatSelectModule,
     MatSliderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSpinner
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="survey-display-container">
-      @if (survey) {
+      <!-- Loading State -->
+      @if (isLoading()) {
+        <div class="loading-state">
+          <mat-spinner diameter="40"></mat-spinner>
+          <p class="mt-4 text-gray-600">Caricamento sondaggio...</p>
+        </div>
+      }
+
+      <!-- Error State -->
+      @else if (error()) {
+        <div class="error-state">
+          <mat-icon class="error-icon">error</mat-icon>
+          <h3>Errore</h3>
+          <p>{{ error() }}</p>
+          <button mat-raised-button color="primary" routerLink="/survey-runner" class="mt-4">
+            <mat-icon>arrow_back</mat-icon>
+            Torna alla Selezione
+          </button>
+        </div>
+      }
+
+      <!-- Survey Display -->
+      @else if (survey) {
         <mat-card class="survey-card">
+          <!-- Back Button -->
+          <div class="back-button-container">
+            <button mat-button routerLink="/survey-runner">
+              <mat-icon>arrow_back</mat-icon>
+              Torna alla Selezione
+            </button>
+          </div>
+
           <!-- Survey Header -->
           <mat-card-header>
             <mat-card-title>{{ survey.title }}</mat-card-title>
@@ -212,6 +246,10 @@ import { Survey, Question, QuestionType, QuestionOption } from '../../../../core
           <mat-icon class="no-survey-icon">quiz</mat-icon>
           <h3>No survey found</h3>
           <p>The survey you're looking for doesn't exist or has been removed.</p>
+          <button mat-raised-button color="primary" routerLink="/survey-runner" class="mt-4">
+            <mat-icon>arrow_back</mat-icon>
+            Torna alla Selezione
+          </button>
         </div>
       }
     </div>
@@ -305,14 +343,34 @@ import { Survey, Question, QuestionType, QuestionOption } from '../../../../core
     .no-survey p {
       @apply text-gray-500;
     }
+
+    .loading-state,
+    .error-state {
+      @apply text-center py-12;
+    }
+
+    .error-icon {
+      @apply text-6xl text-red-400 mb-4;
+    }
+
+    .back-button-container {
+      @apply mb-4;
+    }
   `]
 })
 export class SurveyDisplayComponent implements OnInit {
   @Input() survey: Survey | null = null;
   @Output() surveySubmitted = new EventEmitter<any>();
 
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly surveyService = inject(SurveyService);
+  private readonly fb = inject(FormBuilder);
+
   readonly currentQuestionIndex = signal(0);
   readonly surveyForm = signal<FormGroup>(new FormGroup({}));
+  readonly isLoading = signal(false);
+  readonly error = signal<string | null>(null);
 
   currentQuestion = computed(() => {
     if (!this.survey?.questions) return null;
@@ -324,12 +382,38 @@ export class SurveyDisplayComponent implements OnInit {
     return ((this.currentQuestionIndex() + 1) / this.survey.questions.length) * 100;
   });
 
-  constructor(private fb: FormBuilder) {}
-
   ngOnInit(): void {
-    if (this.survey) {
+    // If survey is not provided via Input, load it from route
+    if (!this.survey) {
+      this.loadSurveyFromRoute();
+    } else {
       this.initializeForm();
     }
+  }
+
+  private loadSurveyFromRoute(): void {
+    const surveyId = this.route.snapshot.paramMap.get('surveyId');
+    if (!surveyId) {
+      this.error.set('Survey ID not found');
+      return;
+    }
+
+    this.isLoading.set(true);
+    this.surveyService.getSurvey(surveyId).subscribe({
+      next: (survey) => {
+        if (survey) {
+          this.survey = survey;
+          this.initializeForm();
+        } else {
+          this.error.set('Survey not found');
+        }
+        this.isLoading.set(false);
+      },
+      error: (error) => {
+        this.error.set('Failed to load survey');
+        this.isLoading.set(false);
+      }
+    });
   }
 
   private initializeForm(): void {
