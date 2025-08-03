@@ -2,7 +2,7 @@
 
 [![Status](https://img.shields.io/badge/status-Complete-success.svg)](https://github.com/ninomirabile/angularSurvey)
 [![Angular](https://img.shields.io/badge/Angular-20.1.0-red.svg)](https://angular.io/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![Build](https://img.shields.io/badge/build-Passing-green.svg)](https://github.com/ninomirabile/angularSurvey/actions)
 [![Tests](https://img.shields.io/badge/tests-Passing-green.svg)](https://github.com/ninomirabile/angularSurvey)
 
@@ -331,7 +331,32 @@ src/app/
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**.
+
+### **What this means:**
+
+**You are free to:**
+- ✅ **Share** — copy and redistribute the material in any medium or format
+- ✅ **Adapt** — remix, transform, and build upon the material
+
+**Under these terms:**
+- 📝 **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made
+- 🚫 **NonCommercial** — You may not use the material for commercial purposes
+
+### **License Details:**
+- **Full License Text:** [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+- **Human Readable:** [Creative Commons Summary](https://creativecommons.org/licenses/by-nc/4.0/)
+- **Legal Code:** [Legal Text](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+
+### **For Educational Use:**
+This project is specifically designed for **educational purposes** and encourages:
+- 🎓 **Learning and teaching**
+- 🔬 **Research and study**
+- 📚 **Academic use**
+- 🏫 **Classroom demonstrations**
+
+### **Commercial Use:**
+For commercial use, please contact the author for licensing options.
 
 ## 🙏 Acknowledgments
 

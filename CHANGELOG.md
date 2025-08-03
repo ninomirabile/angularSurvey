@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2024-12-19
+
+### Changed
+- **License Update** - Changed from MIT to Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+- **Documentation** - Updated README with detailed license information and usage terms
+- **Badge Update** - Updated license badge to reflect CC BY-NC 4.0
+
+### License Terms
+- **Educational Use** - Free to use for learning, teaching, and academic purposes
+- **Non-Commercial** - Commercial use requires separate licensing
+- **Attribution** - Must give appropriate credit to the original author
+- **Sharing** - Free to share and adapt for non-commercial purposes
+
 ## [1.0.0] - 2024-12-19
 
 ### Added
